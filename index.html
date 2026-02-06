@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HAPPY BIRTHDAY KIMBERLY 🎉</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <!-- Cursive font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* Background: richer color + subtle vignette (less dull) */
+    body { background: none; }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: url("celebration-podium-with-red-and-gold-balloons-and-confetti-background-generative-ai-free-photo.jpg")
+        center / cover no-repeat;
+      filter: saturate(1.45) contrast(1.18) brightness(1.06);
+      transform: scale(1.03);
+      z-index: -2;
+    }
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at top, rgba(255,255,255,0.10), rgba(0,0,0,0.12));
+      z-index: -1;
+    }
+
+    /* Typography: darker + slightly cursive */
+    .cursiveText { font-family: "Playfair Display", serif; }
+    .uiText { font-family: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+
+    /* Framed photos */
+    .frame {
+      position: relative;
+      padding: 10px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.98), rgba(245,245,245,0.86));
+      box-shadow: 0 18px 32px rgba(0,0,0,0.15), inset 0 0 0 2px rgba(0,0,0,0.08);
+    }
+    .frame::before {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border-radius: 16px;
+      box-shadow: inset 0 0 0 2px rgba(0,0,0,0.06);
+      pointer-events: none;
+    }
+
+    /* Horizontal album */
+    .carousel {
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+    .snap { scroll-snap-align: start; }
+    .carousel::-webkit-scrollbar { height: 10px; }
+    .carousel::-webkit-scrollbar-thumb {
+      background: rgba(0,0,0,0.18);
+      border-radius: 999px;
+    }
+  </style>
+</head>
+
+<body class="min-h-screen flex items-center justify-center px-4 py-10 uiText">
+
+  <!-- TAP TO START OVERLAY -->
+  <div id="startOverlay" class="fixed inset-0 z-50 flex items-center justify-center px-6">
+    <div class="bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl w-full max-w-lg p-6 text-center border border-black/10">
+      <div class="text-5xl mb-3">🎶🎉</div>
+      <h2 class="text-2xl font-extrabold text-pink-600 mb-2">Tap to Start</h2>
+      <p class="text-gray-800 mb-5">
+        One tap starts the music and the surprise 💖
+      </p>
+
+      <button id="startBtn"
+        class="w-full px-6 py-3 rounded-xl bg-pink-500 text-white font-extrabold shadow hover:bg-pink-600 transition">
+        Start the Surprise ✨
+      </button>
+
+      <p id="startErr" class="hidden text-sm font-semibold text-red-600 mt-4">
+        ❌ Music couldn’t start. Make sure both audio files are in the same folder as this HTML.
+      </p>
+
+      <p class="text-xs text-gray-700 mt-3">Music can be paused anytime.</p>
+    </div>
+  </div>
+
+  <!-- MAIN CARD (Responsive) -->
+  <div class="bg-white/88 shadow-2xl rounded-3xl p-6 sm:p-10 w-full max-w-md sm:max-w-2xl lg:max-w-4xl text-center backdrop-blur-md">
+
+    <h1 class="text-3xl sm:text-5xl font-extrabold text-pink-600 mb-4">
+      🎂 HAPPY BIRTHDAY KIMBERLY! 🎂
+    </h1>
+
+    <p class="cursiveText text-base sm:text-lg text-gray-900 mb-8 leading-relaxed">
+      I hope today surrounds you with the kind of joy that stays with you long after the candles are out.
+      You deserve moments that make your heart feel full, people who remind you how loved you are, and memories that you’ll carry proudly into the year ahead.
+      May God continue to guide you, bless you, and open doors that lead to everything you’ve been hoping for.
+    </p>
+
+    <!-- MEMORIES (PHOTO ALBUM) -->
+    <div class="bg-white/70 border border-black/10 rounded-2xl p-4 sm:p-6 text-left mb-8">
+      <p class="font-extrabold text-gray-900 mb-3 text-lg">⭐ Memories</p>
+
+      <div class="carousel flex gap-4 overflow-x-auto pb-3">
+        <div class="snap flex-shrink-0 w-72 sm:w-80 lg:w-[22rem]">
+          <div class="frame">
+            <img src="unnamed.jpg" alt="Photo 1"
+                 class="w-full h-72 sm:h-80 lg:h-[22rem] object-cover rounded-[18px]" />
+          </div>
+        </div>
+
+        <div class="snap flex-shrink-0 w-72 sm:w-80 lg:w-[22rem]">
+          <div class="frame">
+            <img src="IMG_0732.jpg" alt="Photo 2"
+                 class="w-full h-72 sm:h-80 lg:h-[22rem] object-cover rounded-[18px]" />
+          </div>
+        </div>
+
+        <div class="snap flex-shrink-0 w-72 sm:w-80 lg:w-[22rem]">
+          <div class="frame">
+            <img src="IMG_2726.jpg" alt="Photo 3"
+                 class="w-full h-72 sm:h-80 lg:h-[22rem] object-cover rounded-[18px]" />
+          </div>
+        </div>
+
+        <div class="snap flex-shrink-0 w-72 sm:w-80 lg:w-[22rem]">
+          <div class="frame">
+            <img src="IMG_4518.jpg" alt="Photo 4"
+                 class="w-full h-72 sm:h-80 lg:h-[22rem] object-cover rounded-[18px]" />
+          </div>
+        </div>
+
+        <div class="snap flex-shrink-0 w-72 sm:w-80 lg:w-[22rem]">
+          <div class="frame">
+            <img src="IMG_2138.jpg" alt="Photo 5"
+                 class="w-full h-72 sm:h-80 lg:h-[22rem] object-cover rounded-[18px]" />
+          </div>
+        </div>
+
+        <div class="snap flex-shrink-0 w-72 sm:w-80 lg:w-[22rem]">
+          <div class="frame">
+            <img src="IMG_9990.jpg" alt="Photo 6"
+                 class="w-full h-72 sm:h-80 lg:h-[22rem] object-cover rounded-[18px]" />
+          </div>
+        </div>
+      </div>
+
+      <p class="text-xs text-gray-700 mt-2">Swipe/scroll side-to-side →</p>
+    </div>
+
+    <div class="text-5xl sm:text-6xl mb-8 text-center">🎉🎈🎁</div>
+
+    <p class="cursiveText text-gray-900 italic text-sm sm:text-base mb-8 leading-relaxed text-center">
+      “For I know the plans I have for you, declares the LORD, plans to prosper you and not to harm you,
+      plans to give you hope and a future.”
+    </p>
+
+    <!-- MUSIC CONTROLS -->
+    <div class="bg-white/70 border border-black/10 rounded-2xl p-4 sm:p-6 text-left mb-8">
+      <div class="flex items-center justify-between gap-3">
+        <div>
+          <p class="font-extrabold text-gray-900">🎵 Bday Music</p>
+          <p id="trackLabel" class="text-xs text-gray-700">Track 1 playing (switches after 30 seconds)</p>
+        </div>
+        <button id="musicBtn"
+          class="px-4 py-2 rounded-lg bg-purple-700 text-white font-bold hover:bg-purple-800 transition">
+          Play
+        </button>
+      </div>
+
+      <div class="mt-3 flex items-center gap-3">
+        <span class="text-sm font-semibold text-gray-900">Volume</span>
+        <input id="volume" type="range" min="0" max="1" step="0.01" value="0.7" class="w-full" />
+      </div>
+    </div>
+
+    <div class="flex flex-col sm:flex-row gap-3 justify-center">
+      <button onclick="celebrate()"
+        class="px-6 py-3 bg-pink-600 text-white rounded-xl shadow hover:bg-pink-700 transition w-full sm:w-auto">
+        Click for a Surprise 🎊
+      </button>
+
+      <button onclick="restartExperience()"
+        class="px-6 py-3 bg-gray-900 text-white rounded-xl shadow hover:opacity-90 transition w-full sm:w-auto">
+        Restart ✨
+      </button>
+    </div>
+
+    <p id="surprise" class="mt-4 text-lg sm:text-xl font-semibold text-black hidden">
+  You deserve all the love, joy, and sweetest moments today and always 💖✨
+</p>
+
+<!-- LETTER / POSTCARD -->
+<div id="letterWrap" class="hidden mt-6">
+  <div class="mx-auto max-w-2xl">
+    <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-black/10 bg-white">
+
+      <!-- Postcard background -->
+      <img
+        src="dreamstime_xxl_83961481.jpg"
+        alt="Letter"
+        class="w-full h-auto block"
+      />
+
+      <!-- Text overlay -->
+      <div class="absolute inset-0 p-6 sm:p-10">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 h-full">
+
+          <!-- Left side (decorative note) -->
+          <div class="hidden sm:flex flex-col justify-end">
+            <p class="cursiveText text-black/80 text-sm">
+              A little letter for you 
+            </p>
+          </div>
+
+        <!-- Right side (message) -->
+<div class="flex flex-col justify-center h-full">
+  <div class="bg-white/70 backdrop-blur-sm rounded-xl border border-black/10
+              p-4 sm:p-5
+              max-h-[60vh] sm:max-h-[65vh]
+              overflow-y-auto">
+
+              <p class="text-xs font-semibold text-black/60 mb-2">
+                To: Kim
+              </p>
+
+              <!-- ✍️ WRITE YOUR LETTER HERE -->
+              <p class="cursiveText text-gray-900 text-base sm:text-lg leading-relaxed">
+                Hey Kim, Happy 21's. Soon you'll be miles away from home, friends, family, but never our God. I truly believe he has favorites, and you're definitely one of them. But I just want you to know you deserve it all. Know that I will always be here for you, because you were there for me. I may not have been able to spend as much time with you as I did with others, but know I enjoyed your presence during it all. From Second Service, walks to Tierra Mia, Tearing Veils (I promise I'll keep it alive), to Kevin Kaarl Concert, Ice-Skating, singing with you. Know that we needed you, Nancy, Abdiel, Julie, Mia, Chuy. You've brought us closer to God than we could ever have. You'll miss home, and you may have doubts in DC, but you'll be back stronger. I wish I could write more but I'm running out of scripts haha, so have fun! And call us! 
+              </p>
+
+              <p class="cursiveText text-gray-900 mt-4 text-base sm:text-lg">
+                With love,<br>
+                <span class="font-bold text-pink-700">Josue</span>
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+  <!-- AUDIO -->
+  <audio id="bgMusic" preload="auto" playsinline></audio>
+
+  <script>
+    /* =========================
+       MUSIC: tries both names (with .mp3 and without)
+       Switches to Track 2 after 30s and loops
+       ========================= */
+    const music = document.getElementById('bgMusic');
+    const musicBtn = document.getElementById('musicBtn');
+    const volume = document.getElementById('volume');
+    const overlay = document.getElementById('startOverlay');
+    const startBtn = document.getElementById('startBtn');
+    const startErr = document.getElementById('startErr');
+    const trackLabel = document.getElementById('trackLabel');
+
+    const TRACKS = [
+      {
+        names: [
+          "Karen Espinosa (Ft. Nate Diaz) Cristo Yo Te Amo + Enamórate.mp3",
+          "Karen Espinosa (Ft. Nate Diaz) Cristo Yo Te Amo + Enamórate"
+        ],
+        loop: false,
+        label: "Track 1 playing (switches after 30 seconds)"
+      },
+      {
+        names: [
+          "Danzando _ Christine D’Clario, Travy Joe, Daniel Calveti y Gateway Worship Español.mp3",
+          "Danzando _ Christine D’Clario, Travy Joe, Daniel Calveti y Gateway Worship Español"
+        ],
+        loop: true,
+        label: "Track 2 playing (looping)"
+      }
+    ];
+
+    let currentTrack = 0;
+    let switchTimer = null;
+    let switched = false;
+
+    function clearSwitchTimer() {
+      if (switchTimer) { clearTimeout(switchTimer); switchTimer = null; }
+    }
+
+    function waitForCanPlayOrError() {
+      return new Promise((resolve, reject) => {
+        const ok = () => { cleanup(); resolve(); };
+        const fail = () => { cleanup(); reject(new Error("audio error")); };
+        const cleanup = () => {
+          music.removeEventListener("canplaythrough", ok);
+          music.removeEventListener("error", fail);
+        };
+        music.addEventListener("canplaythrough", ok, { once: true });
+        music.addEventListener("error", fail, { once: true });
+      });
+    }
+
+    async function loadTrack(i) {
+      currentTrack = i;
+      music.loop = TRACKS[i].loop;
+      if (trackLabel) trackLabel.textContent = TRACKS[i].label;
+
+      for (const name of TRACKS[i].names) {
+        try {
+          music.src = encodeURI(name);
+          music.load();
+          await waitForCanPlayOrError();
+          console.log("Loaded audio:", name);
+          return;
+        } catch (e) {
+          console.warn("Failed to load:", name);
+        }
+      }
+
+      startErr.classList.remove('hidden');
+      throw new Error("No valid audio file found for track " + i);
+    }
+
+    function scheduleSwitchAfter30s() {
+      clearSwitchTimer();
+      if (currentTrack !== 0 || switched) return;
+
+      switchTimer = setTimeout(async () => {
+        const wasPlaying = !music.paused;
+
+        switched = true;
+        await loadTrack(1);
+        music.currentTime = 0;
+
+        try {
+          if (wasPlaying) await music.play();
+          musicBtn.textContent = wasPlaying ? "Pause" : "Play";
+        } catch (e) {
+          musicBtn.textContent = "Play";
+        }
+      }, 30000);
+    }
+
+    // Volume
+    music.volume = volume.value;
+    volume.addEventListener('input', () => { music.volume = volume.value; });
+
+    async function startExperience() {
+      startErr.classList.add('hidden');
+
+      try {
+        switched = false;
+        await loadTrack(0);
+
+        await music.play();
+        musicBtn.textContent = "Pause";
+        overlay.style.display = "none";
+
+        confetti({ particleCount: 180, spread: 90, origin: { y: 0.7 } });
+
+        scheduleSwitchAfter30s();
+      } catch (e) {
+        startErr.classList.remove('hidden');
+        console.log("Start error:", e);
+      }
+    }
+
+    startBtn.addEventListener('click', startExperience);
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) startExperience(); });
+
+    musicBtn.addEventListener('click', async () => {
+      try {
+        if (music.paused) {
+          await music.play();
+          musicBtn.textContent = "Pause";
+          if (currentTrack === 0 && !switched) scheduleSwitchAfter30s();
+        } else {
+          music.pause();
+          musicBtn.textContent = "Play";
+          clearSwitchTimer();
+        }
+      } catch (e) {
+        startErr.classList.remove('hidden');
+      }
+    });
+
+    music.addEventListener('ended', async () => {
+      if (currentTrack === 0 && !switched) {
+        switched = true;
+        await loadTrack(1);
+        try { await music.play(); } catch (e) {}
+      }
+    });
+
+    music.addEventListener('timeupdate', async () => {
+      if (currentTrack === 0 && !switched && music.currentTime >= 30) {
+        switched = true;
+        clearSwitchTimer();
+        await loadTrack(1);
+        music.play().catch(() => {});
+      }
+    });
+
+    function restartExperience() {
+      document.getElementById('surprise').classList.add('hidden');
+      overlay.style.display = "flex";
+      music.pause();
+      music.currentTime = 0;
+      clearSwitchTimer();
+      switched = false;
+      loadTrack(0).catch(() => {});
+      musicBtn.textContent = "Play";
+      if (trackLabel) trackLabel.textContent = TRACKS[0].label;
+      confetti({ particleCount: 90, spread: 70, origin: { y: 0.7 } });
+    }
+
+/* =========================
+   CONFETTI BUTTON
+   ========================= */
+function celebrate() {
+  // show the text
+  document.getElementById('surprise').classList.remove('hidden');
+
+  // ✅ show the letter/postcard
+  document.getElementById('letterWrap').classList.remove('hidden');
+
+  // confetti effects
+  confetti({ particleCount: 300, spread: 110, origin: { y: 0.6 } });
+  setTimeout(() => {
+    confetti({ particleCount: 220, spread: 140, origin: { x: 0.1, y: 0.6 } });
+    confetti({ particleCount: 220, spread: 140, origin: { x: 0.9, y: 0.6 } });
+  }, 300);
+  setTimeout(() => {
+    confetti({ particleCount: 140, spread: 160, origin: { y: 0.3 } });
+  }, 650);
+}
+
+  </script>
+<div class="fixed bottom-3 right-3 z-40 text-[11px] sm:text-xs text-black/70 font-semibold bg-white/50 backdrop-blur px-3 py-1 rounded-full border border-black/10">
+  By: Josue Olivares
+</div>
+</body>
+</html>
